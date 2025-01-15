@@ -1,0 +1,60 @@
+{
+	"SDM660-R": {
+		"COMMON": {
+			"ZEUS/Helios/platform/release/target_files":"release/target/helios",
+			"ZEUS/Common/platform/build":"LA.UM.9.2.1.R1/LINUX/android/build/make"
+		}
+	},
+	
+	"SDM6490-R": {
+		"VENDOR": {
+			"ZEUS/Athena/platform/release/target_files":"release/target/athena"
+		},
+		"QSSI": {
+			"ZEUS/Common/platform/build_repo":"LA.QSSI/LINUX/android/build/make",
+			"ZEUS/Common/platform/system/core": "LA.QSSI/LINUX/android/system/core"
+		}
+	},
+	
+	"SDM6375-R": {
+		"COMMON": {
+			"odm/t2m/quicl/platform/build":"build/make",
+			"odm/t2m/quicl/platform/system/core":"system/core",
+			"odm/t2m/quicl/platform/release/target_files":"release/target"
+		}
+	},
+	
+	"SDW410-R": {
+		"COMMON": {
+			"ZEUS/Common/platform/build_repo":"LAW.BR.5.1/LINUX/android/build/make",
+			"ZEUS/Helios/platform/release/target_files":"release/target/WTxx"
+		}
+	},
+	
+	"SDM660-T": {
+		"COMMON": {
+			"ZEUS/Helios/platform/release/target_files":"release/target/helios",
+			"ZEUS/Common/platform/build_repo":"LA.UM.11.2.1.R1/LINUX/android/build/make"
+		}
+	},
+	
+	"SDM6490-T": {
+		"VENDOR": {
+			"ZEUS/Athena/platform/release/target_files":"release/target/athena"
+		},
+		"QSSI": {
+			"ZEUS/Common/platform/build_repo":"LA.QSSI.13.0/LINUX/android/build/make",
+			"ZEUS/Common/platform/system/core":"LA.QSSI.13.0/LINUX/android/system/core"
+		}
+	},
+	
+	"SDM6375-T": {
+		"QSSI":{
+			"ZEUS/Common/platform/build_repo":"LA.QSSI.13.0/LINUX/android/build/make",
+			"ZEUS/Common/platform/system/core":"LA.QSSI.13.0/LINUX/android/system/core"
+		},
+		"VENDOR":{
+			"odm/t2m/quicl/platform/release/target_files":"release/target"
+		}
+	}
+}

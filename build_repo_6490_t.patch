@@ -1,0 +1,40 @@
+diff --git a/core/sysprop.mk b/core/sysprop.mk
+index 9e301f10ff..42e6c55d16 100644
+--- a/core/sysprop.mk
++++ b/core/sysprop.mk
+@@ -1,6 +1,6 @@
+ #
+ # Copyright (C) 2020 The Android Open Source Project
+-# Copyright (c) 2022 Zebra Technologies Corporation and/or its affiliates. All rights reserved.
++# Copyright (c) 2024 Zebra Technologies Corporation and/or its affiliates. All rights reserved.
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+@@ -183,7 +183,13 @@ ifeq (,$(strip $(BUILD_FINGERPRINT)))
+   else
+     BF_BUILD_NUMBER := $(file <$(BUILD_NUMBER_FILE))
+   endif
+-  BUILD_FINGERPRINT := $(PRODUCT_BRAND)/$(TARGET_PRODUCT)/$(TARGET_DEVICE):$(PLATFORM_VERSION)/$(BUILD_ID)/$(BF_BUILD_NUMBER):$(TARGET_BUILD_VARIANT)/$(BUILD_VERSION_TAGS)
++BF_BUILD_NUMBER := {BUILD_NUMBER}
++  ifeq ($(TARGET_USES_GMS_PACKAGES),true)
++  HARDCODED_BUILD_ID := $(GMS_BASELINE){BUILD_ID_WITHOUT_BASEFILEGMS}
++  else
++  HARDCODED_BUILD_ID := $(NGMS_BASELINE){BUILD_ID_WITHOUT_BASEFILENGMS}
++  endif
++  BUILD_FINGERPRINT := $(PRODUCT_BRAND)/$(TARGET_PRODUCT)/$(TARGET_DEVICE):$(PLATFORM_VERSION)/$(HARDCODED_BUILD_ID)/$(BF_BUILD_NUMBER):$(TARGET_BUILD_VARIANT)/$(BUILD_VERSION_TAGS)
+ endif
+ # unset it for safety.
+ BF_BUILD_NUMBER :=
+diff --git a/tools/buildinfo.sh b/tools/buildinfo.sh
+index 55cfb7914f..26b08fd327 100755
+--- a/tools/buildinfo.sh
++++ b/tools/buildinfo.sh
+@@ -13,7 +13,7 @@ echo "ro.build.keys=$BUILD_KEYS"
+ if [ -n "$DISPLAY_BUILD_NUMBER" ] ; then
+ echo "ro.build.display_build_number=$DISPLAY_BUILD_NUMBER"
+ fi
+-echo "ro.build.version.incremental=$BUILD_NUMBER"
++echo "ro.build.version.incremental={BUILD_NUMBER}"
+ echo "ro.build.version.sdk=$PLATFORM_SDK_VERSION"
+ echo "ro.build.version.preview_sdk=$PLATFORM_PREVIEW_SDK_VERSION"
+ echo "ro.build.version.preview_sdk_fingerprint=$PLATFORM_PREVIEW_SDK_FINGERPRINT"

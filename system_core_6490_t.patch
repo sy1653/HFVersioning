@@ -1,0 +1,25 @@
+diff --git a/init/property_service.cpp b/init/property_service.cpp
+index 4792d0b086..61d45006ba 100644
+--- a/init/property_service.cpp
++++ b/init/property_service.cpp
+@@ -906,9 +906,17 @@ static std::string ConstructBuildFingerprint(bool legacy) {
+     build_fingerprint += GetProperty("ro.build.version.release_or_codename", UNKNOWN);
+     build_fingerprint += '/';
+
+-    std::string build_id =
+-            legacy ? GetProperty(LEGACY_ID_PROP, UNKNOWN) : GetProperty(ID_PROP, UNKNOWN);
+-    build_fingerprint += build_id;
++//    std::string build_id =
++//            legacy ? GetProperty(LEGACY_ID_PROP, UNKNOWN) : GetProperty(ID_PROP, UNKNOWN);
++//    build_fingerprint += build_id;
++    std::string build_id = GetProperty("ro.build.id", UNKNOWN);
++    size_t found = build_id.find("TG");
++    if(found != std::string::npos && found==12) {
++       build_fingerprint += "{basefile_gms}";
++    } else {
++       build_fingerprint += "{basefile_nongms}";
++    }
++
+     build_fingerprint += '/';
+     build_fingerprint += GetProperty("ro.build.version.incremental", UNKNOWN);
+     build_fingerprint += ':';

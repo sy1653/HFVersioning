@@ -1,0 +1,26 @@
+{
+    "baseline_patch_config.sh": {
+        "existing":{
+            "GMS_BASELINE": "value",
+            "NGMS_BASELINE": "value",
+            "IS_HOTFIX_ENABLED": "true",
+            "BUILD_ID_PATCH_STRING": "value",
+            "IS_PRODUCT_TRANSITIONED_TO_MR":"true",
+            "BUILD_ID_HOTFIX_MODIFIER":"H00"
+        },
+
+        "pattern":{
+            "pattern": "echo \"Build variant - $VARIANT\"",
+            "BUILD_NUMBER":"value"
+        }
+    },
+
+    "osu3/basefile": {
+        "existing":{
+            "basefile_gms":"value",
+            "basefile_nongms":"value",
+            "artifactory_repository_name":"virtual-release",
+            "build_enabled":"true"
+        }
+    }
+}
